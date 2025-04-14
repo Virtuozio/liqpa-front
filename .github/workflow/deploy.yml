@@ -1,20 +1,26 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout 🔄
         uses: actions/checkout@v3
 
-      - name: Install and Build 🔧
-        run: |
-          npm ci
-          npm run build
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build site
+        run: npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
