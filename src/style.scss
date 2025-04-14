@@ -1,0 +1,109 @@
+// IMPORTS
+@use "./sass/vars.scss";
+@use "./partials/hero/hero";
+@use "./partials/aboutUs/aboutUs";
+@use "./partials/program/program";
+@use "./partials/proposals/proposals";
+@use "./partials/footer/footer";
+@use "./partials/modalForm/modalForm";
+@use "./partials/contentBorder/contentBorder";
+@use "./partials/backdrop/backdrop";
+@use "./partials/spinner/spinner";
+
+// policy imports
+@use "./sass/policy.scss";
+@use "./partials/policyHeader/policyHeader";
+
+// FONTS
+@font-face {
+  font-family: "SignPainter";
+  src: url("./assets/fonts/signpainter_housescript.otf") format("woff");
+}
+
+// BASE STYLES
+
+@media screen and (min-width: 320px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+body {
+  background-color: #fff6fb;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.scrollBlock {
+  overflow: hidden;
+}
+
+.blur {
+  filter: blur(9px);
+}
+
+// ADAPTIVE
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Mobile
+@media screen and (max-width: 767px) {
+  .container {
+    // max-width: 480px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+// Tablet
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+// Desktop
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1200px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}

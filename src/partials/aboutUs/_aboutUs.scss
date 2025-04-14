@@ -1,0 +1,252 @@
+.aboutUs {
+  padding-top: 46px;
+  color: #393939;
+  font-family: "Avenir Next Cyr", sans-serif;
+}
+
+.title.main-title {
+  text-align: center;
+  margin-top: 0px;
+}
+.title {
+  font-family: "Alice", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 150%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.project-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 180%;
+
+  margin-bottom: 15px;
+}
+
+//About you list
+.title.about-you__title {
+  font-size: 16px;
+  font-family: "Avenir Next Cyr", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #393939;
+}
+
+.about-you__list {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 16px;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  font-family: "Avenir Next Cyr", sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #393939;
+
+  li {
+    list-style-type: disc;
+    display: list-item;
+  }
+}
+
+//Persons
+
+.person-first_info-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 18px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 180%;
+}
+
+.person-first__photo {
+  width: 252px;
+}
+
+.person-first__questions {
+  padding-top: 24px;
+  background-image: url("./assets/images/photo/bcg-lines.png");
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+}
+
+.person-second {
+  padding-top: 20px;
+}
+.person-second__info {
+  margin-bottom: 18px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  color: #404041;
+}
+
+.person-second__photo {
+  display: block;
+  width: 336px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.person-second__photo-desktop {
+  display: none;
+}
+
+.person-second__questions {
+  padding-top: 24px;
+}
+
+.title__questions {
+  margin-bottom: 20px;
+}
+
+// Accordion
+.accordion-item__icon {
+  transition: transform 100ms var(--cubic);
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.accordion {
+  width: 100%;
+
+  margin: 20px auto;
+}
+.accordion-item {
+  background-color: #fff6fb;
+  margin: 10px 0;
+  // border-radius: 10px;
+  // box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid;
+  // border-image: linear-gradient(
+  //     to right,
+  //     transparent,
+  //     rgba(220, 91, 222, 0.5),
+  //     transparent
+  //   )
+  //   1;
+
+  border-image: linear-gradient(
+      274deg,
+      rgba(255, 255, 255, 0) 15%,
+      rgba(220, 91, 222, 0.4) 50%,
+      rgba(255, 255, 255, 0) 85%
+    )
+    1;
+}
+.accordion-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px;
+  min-height: 50px;
+
+  font-family: "Alice";
+  line-height: 150%;
+  font-weight: bold;
+
+  position: relative;
+
+  cursor: pointer;
+}
+
+.accordion-item-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: min-height 100ms ease-out;
+}
+.accordion-item-body-content {
+  padding: 15px;
+  line-height: 150%;
+  // border-top: 1px solid;
+  // border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
+// Mobile
+@media screen and (max-width: 767px) {
+}
+
+// Tablet
+@media screen and (min-width: 768px) {
+  .person-first__wrapper {
+    width: 100%;
+    height: auto;
+    background-image: none;
+  }
+  .person-first_info-wrapper {
+    flex-direction: row;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+  }
+
+  .person-first__photo {
+    display: block;
+    float: right;
+    margin: 10px;
+  }
+
+  .person-second__photo {
+    display: none;
+  }
+  .person-second__photo-desktop {
+    display: block;
+    float: left;
+    width: 310px;
+    margin: 10px 20px 10px 10px;
+  }
+}
+@media screen and (max-width: 1199px) {
+}
+
+// Desktop
+@media screen and (min-width: 1200px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .title.about-you__title {
+    font-size: 24px;
+  }
+  .about-you__list {
+    font-size: 20px;
+    max-width: 600px;
+  }
+
+  .person-first_info-wrapper {
+    font-size: 20px;
+  }
+
+  .project-text {
+    font-size: 20px;
+    margin-bottom: 48px;
+  }
+
+  .accordion-item {
+    font-size: 20px;
+  }
+
+  .person-second__info {
+    font-size: 20px;
+  }
+}

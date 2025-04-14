@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rozkvitay</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/images/icons/favicon-16x16.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet" />
+
+    <link href="https://fonts.cdnfonts.com/css/avenir-next-cyr" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+    />
+    <link rel="stylesheet" href="./style.scss" />
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", "151045877828838");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=151045877828838&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </head>
+
+  <body>
+    <main>
+      <include src="./partials/policyHeader/policyHeader.html"></include>
+      <div class="container policy__container">
+        <div class="policy__content-wrapper">
+          <h1 class="policy__main-title">Умови оплати та повернення коштів</h1>
+
+          <h2 class="policy__title">Оплата послуги</h2>
+          <p>
+            Користувач має можливість замовити послуги коучингу на нашому сайті
+            http://rozkvitay.net.ua/ із подальшою оплатою через платіжний сервіс "liqpay". Після
+            вибору необхідної послуги та заповнення відповідної інформації, користувач буде
+            перенаправлений на сторінку оплати через "liqpay", де він зможе здійснити оплату з
+            використанням різних способів платежу, таких як кредитні картки, електронні гроші та
+            інші.
+          </p>
+
+          <h2 class="policy__title">Обробка платежу</h2>
+          <p>
+            Платіжний сервіс "liqpay" забезпечує безпечну обробку платежів і збереження
+            конфіденційної інформації користувача. Вся фінансова інформація, необхідна для
+            здійснення оплати, обробляється згідно з положеннями українського законодавства про
+            захист персональних даних і не розголошується третім особам без згоди користувача.
+          </p>
+
+          <h2 class="policy__title">Повернення коштів</h2>
+          <p>
+            У разі, якщо користувач бажає скасувати своє замовлення та отримати повернення коштів,
+            він повинен зв'язатися з нашою адміністрацією за вказаними на сайті контактними даними.
+            Повернення коштів може бути здійснене у випадку, коли замовлення ще не було виконане або
+            затримане, а також в інших випадках, передбачених українським законодавством.
+          </p>
+
+          <h2 class="policy__title">Зміни умов оплати</h2>
+          <p>
+            Ми залишаємо за собою право вносити зміни до умов оплати та повернення коштів. Будь-які
+            зміни будуть опубліковані на нашому сайті і набувають чинності з моменту їх публікації
+          </p>
+        </div>
+      </div>
+      <include src="./partials/footer/footer.html"></include>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="modal-form visually-hidden">
+
+
+        <div class="modal-form-wrapper">
+            <button class="modal-form__close-btn">
+                <svg class="" width="24" height="24">
+                    <use href="./assets/images/icons/icons.svg#icon-close"></use>
+                </svg>
+            </button>
+
+            <div class="modal-form-content-wrapper">
+                <h2 class="title modal-form__title">Реєстрація на курс</h2>
+
+                <form id="orderForm">
+
+                    <input class="modal-form__input" type="text" name="name" placeholder="ФІО" maxlength="50" required>
+
+                    <label class="modal-form__phone-lable" for="phone_number">
+                        тел.
+                    </label>
+                    <input class="modal-form__input phone-input" type="tel" name="phone" id="phone_number"
+                        placeholder="+380" required />
+
+                    <input type="hidden" name="amount" value="" id="amountInput" />
+
+                    <button class="modal-form__submit" type="submit">Забронювати</button>
+
+                    <button class="privat-button" type="submit" id="pay">
+                        <img src="https://static.liqpay.ua/buttons/logo-small.png" name="btn_text" />
+                        <span class="privat-button-text"></span>
+                    </button>
+
+                </form>
+
+
+
+            </div>
+
+            <p class="after-submit-text visually-hidden"></p>
+
+        </div>
+    </div>
+</div>

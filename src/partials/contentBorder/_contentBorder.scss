@@ -1,0 +1,18 @@
+.content-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  margin: 46px 0px;
+}
+
+.content-border__img {
+  width: 40px;
+}
+
+.content-border__img:first-child,
+.content-border__img:last-child {
+  width: 28px;
+  height: 28px;
+}

@@ -1,0 +1,229 @@
+.container__footer {
+  background-color: #ba89a2;
+  width: 100%;
+}
+.footer {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 52px;
+  padding-bottom: 20px;
+
+  font-family: 'Alice';
+  color: #f6ef00;
+  background-image: url('./assets/images/photo/visa.png'),
+    url('./assets/images/photo/mastercard.png');
+
+  background-repeat: no-repeat;
+  background-position-x: -4px, left;
+  background-position-y: 90%, bottom;
+  // background-position: 20px 30px;
+}
+
+.contacts__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.contacts__title {
+  font-size: 12px;
+  font-weight: 400;
+
+  margin: 0px;
+  margin-right: 15px;
+}
+.contacts__list {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 10px;
+  padding: 0;
+
+  font-size: 12px;
+  font-style: italic;
+
+  a {
+    &:hover {
+      color: #f7f6d9;
+    }
+    transform: color 100ms var(--cubic);
+  }
+}
+.last-telegram-contact {
+  margin-bottom: 15px;
+}
+
+.contacts__list-nolink-item {
+  display: flex;
+  justify-content: flex-start;
+}
+svg.footer__contact-icon--nolink {
+  width: 16px;
+  height: 16px;
+}
+
+.footer__contact-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  fill: #f6ef00;
+}
+.footer__telegram-link {
+  display: flex;
+  align-items: center;
+
+  color: inherit;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.footer__wrapper {
+  max-width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+
+  position: relative;
+}
+
+.footer__title {
+  font-size: 24px;
+  line-height: 150%;
+}
+
+.footer-wishes {
+  max-width: 133px;
+  font-family: 'SignPainter', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+}
+
+.footer__flower {
+  position: relative;
+
+  top: -22px;
+  right: -90px;
+}
+
+.footer__policy-wrapper {
+  max-width: 300px;
+  font-size: 12px;
+}
+
+.footer__policy-list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.footer__policy-list-item {
+  display: inline-block;
+  a {
+    color: #f6ef00;
+
+    &:hover {
+      color: #f7f6d9;
+    }
+    transform: color 100ms var(--cubic);
+  }
+}
+
+// Mobile
+@media screen and (max-width: 767px) {
+}
+
+// Tablet
+@media screen and (min-width: 768px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    background-position-x: 87%, 98%;
+    background-position-y: bottom, bottom;
+  }
+  .footer__wrapper {
+    order: 2;
+    flex-grow: 2;
+  }
+  .contacts__wrapper {
+    width: 160px;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 0px;
+  }
+  .contacts__title {
+    margin: 0px;
+  }
+  .contacts__list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer__policy-wrapper {
+    width: 160px;
+    order: 3;
+  }
+}
+@media screen and (max-width: 1199px) {
+}
+
+// Desktop
+@media screen and (min-width: 1200px) {
+  .footer {
+    background-position-x: 88%, 97%;
+  }
+
+  .footer__title {
+    font-size: 28px;
+  }
+  .footer-wishes {
+    max-width: 233px;
+    font-size: 18px;
+  }
+
+  .contacts__wrapper {
+    width: 220px;
+  }
+  .contacts__title {
+    font-size: 18px;
+  }
+
+  .footer__contact-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .footer__telegram-link {
+    display: flex;
+    align-items: center;
+
+    color: inherit;
+    font-size: 16px;
+    font-style: italic;
+  }
+
+  .contacts__list {
+    font-size: 16px;
+  }
+  .footer__policy-wrapper {
+    width: 220px;
+    font-size: 16px;
+  }
+}

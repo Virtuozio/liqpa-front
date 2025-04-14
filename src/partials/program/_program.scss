@@ -1,0 +1,167 @@
+.program {
+  padding-bottom: 54px;
+
+  background-image: url('./assets/images/photo/bcg-lines-program.png');
+  background-repeat: no-repeat;
+  background-size: 94px;
+  background-position-y: 13px;
+
+  font-family: 'Avenir Next Cyr', sans-serif;
+  color: #393939;
+}
+
+.title.title_program {
+  margin: 0 0 21px 0;
+}
+
+.program-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+
+  font-family: 'Avenir Next Cyr', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #393939;
+
+  list-style-type: none;
+}
+
+li.program-list__item {
+  display: flex;
+  position: relative;
+
+  padding-left: 4px;
+}
+.program-list__number {
+  position: relative;
+
+  top: 9px;
+
+  margin-right: 34px;
+
+  font-family: 'Alice';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 55px;
+}
+
+.program-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.program-list__info {
+  margin-bottom: 5px;
+  &::first-letter {
+    color: black;
+    font-weight: 500;
+    font-size: 24px;
+  }
+}
+
+//TECH
+.tech-list-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.tech-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 60px;
+}
+
+.tech-list-item {
+  display: list-item;
+}
+
+// BONUSES
+.bonuses-row {
+  display: none;
+  margin-bottom: 26px;
+
+  font-size: 14px;
+  font-style: italic;
+
+  line-height: 150%;
+}
+
+.bonuses-list {
+  max-width: 300px;
+  font-style: italic;
+  margin-bottom: 26px;
+}
+
+.bonuses-list__title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.bonuses-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin: 0px;
+  padding-left: 0px;
+
+  font-size: 14px;
+}
+
+.after-program-text {
+  font-size: 14px;
+  line-height: 150%;
+}
+
+// Tablet
+@media screen and (min-width: 768px) {
+  .program-info-wrapper {
+    align-items: flex-start;
+  }
+  .program-list__info {
+    margin-bottom: 15px;
+  }
+  .tech-list {
+    padding-left: 40px;
+  }
+
+  .tech-list-title {
+    text-align: start;
+  }
+
+  .bonuses-row {
+    display: block;
+  }
+  .bonuses-list {
+    display: none;
+  }
+}
+
+// Desktop
+@media screen and (min-width: 1200px) {
+  .program-list__info {
+    font-size: 20px;
+    &::first-letter {
+      font-size: 26px;
+    }
+  }
+
+  .tech-list-wrapper {
+    font-size: 20px;
+  }
+
+  .bonuses-row {
+    font-size: 20px;
+  }
+
+  .after-program-text {
+    font-size: 20px;
+  }
+}

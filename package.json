@@ -1,0 +1,23 @@
+{
+  "name": "liqpay-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "source": "src/index.html",
+  "homepage": "https://virtuozio.github.io/liqpay-frontend/",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /liqpay-frontend/",
+    "dev": "parcel index.html"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.14.4",
+    "buffer": "^6.0.3",
+    "parcel": "^2.14.0",
+    "posthtml-include": "^2.0.1",
+    "svgo": "^3.3.2"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "axios": "^1.8.4"
+  }
+}

@@ -1,0 +1,121 @@
+.service {
+  // padding-top: 18px;
+  padding-bottom: 48px;
+  font-family: 'Avenir Next Cyr', sans-serif;
+  background-image: url('./assets/images/photo/bcg-lines-proposals.png');
+
+  background-repeat: no-repeat;
+  background-size: 73px;
+  background-position-x: right;
+  background-position-y: 259px;
+}
+
+.service-title-img {
+  width: 40px;
+}
+.service-title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.title.service__title {
+  color: #f2cc21;
+
+  margin: 0px 14px;
+
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.title.service-info__title {
+  text-align: start;
+  margin: 0;
+}
+
+.service__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0 30px;
+  padding-bottom: 20px;
+
+  text-align: start;
+  color: #393939;
+}
+.service__info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+.service__info-text,
+.service__amount {
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.service__amount {
+  text-align: end;
+}
+
+.service__reserve-amount {
+  font-size: 10px;
+  line-height: 95%;
+  text-align: end;
+}
+
+.service__button {
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 188px;
+  height: 38px;
+
+  border: 3px solid #f2cc21;
+  border-radius: 20px;
+
+  font-family: 'Alice';
+  font-size: 20px;
+  line-height: 150%;
+  color: #f2cc21;
+  text-align: center;
+
+  cursor: pointer;
+  background-color: transparent;
+
+  &:hover {
+    box-shadow: var(--shadow);
+  }
+
+  &:active {
+    color: #f7f6d9;
+    border-color: #f7f6d9;
+  }
+
+  transition: all 100ms var(--cubic);
+}
+
+// Desktop
+@media screen and (min-width: 1200px) {
+  .title.service__title {
+    font-size: 26px;
+  }
+  .service__info {
+    width: 700px;
+  }
+
+  .service__info-text,
+  .service__amount {
+    font-size: 20px;
+  }
+
+  .service__reserve-amount {
+    font-size: 18px;
+  }
+}
