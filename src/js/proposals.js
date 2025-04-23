@@ -3,69 +3,50 @@ import { getPayData } from "../api/pay";
 // Elements
 const paymentForm = document.querySelector(".payment-form");
 const backLink = document.querySelector(".payment-form__back-link");
-const legalPersonButton = document.querySelector(".payment-option__button--legal");
-const individualPersonButton = document.querySelector(".payment-option__button--individual");
-const personTypeSection = document.querySelector(".payment-form__person-type");
-const legalRegistrationSection = document.querySelector(".payment-form__registration--legal");
-const individualRegistrationSection = document.querySelector(
-  ".payment-form__registration--individual"
-);
+const priceTable = document.querySelector(".price-table");
+const registrationForm = document.getElementById("registrationForm");
+const priceCells = document.querySelectorAll(".price-cell");
 const legalForm = document.getElementById("legalForm");
-const individualForm = document.getElementById("individualForm");
-
-let selectedType = null;
-let selectedPeriod = {
-  legal: "12",
-  individual: "12",
-};
+const periodInput = document.getElementById("periodInput");
+const amountInput = document.getElementById("amountInput");
 
 // Show registration form
-const showRegistrationForm = (type) => {
-  personTypeSection.classList.add("visually-hidden");
-  if (type === "legal") {
-    legalRegistrationSection.classList.remove("visually-hidden");
-    individualRegistrationSection.classList.add("visually-hidden");
-  } else {
-    individualRegistrationSection.classList.remove("visually-hidden");
-    legalRegistrationSection.classList.add("visually-hidden");
-  }
+const showRegistrationForm = () => {
+  priceTable.classList.add("visually-hidden");
+  registrationForm.classList.remove("visually-hidden");
   backLink.style.display = "inline-block";
 };
 
-// Show person type selection
-const showPersonTypeSelection = () => {
-  personTypeSection.classList.remove("visually-hidden");
-  legalRegistrationSection.classList.add("visually-hidden");
-  individualRegistrationSection.classList.add("visually-hidden");
+// Show price selection
+const showPriceSelection = () => {
+  priceTable.classList.remove("visually-hidden");
+  registrationForm.classList.add("visually-hidden");
   backLink.style.display = "none";
-};
-
-// Handle person type selection
-const handlePersonTypeSelect = (type) => {
-  selectedType = type;
-  showRegistrationForm(type);
 };
 
 // Handle back button
 const handleBack = (e) => {
   e.preventDefault();
-  showPersonTypeSelection();
+  showPriceSelection();
 };
 
-// Handle license period selection
-const handleLicensePeriodChange = (e) => {
-  const type = e.target.name.includes("legal") ? "legal" : "individual";
-  selectedPeriod[type] = e.target.value;
+// Handle price selection
+const handlePriceSelect = (cell) => {
+  const period = cell.dataset.period;
+  const price = cell.dataset.price;
+
+  // Update hidden inputs
+  if (periodInput) periodInput.value = period;
+  if (amountInput) amountInput.value = price;
+
+  showRegistrationForm();
 };
 
 // Handle payment methods
-const handlePayment = async (method, formType) => {
-  const form = formType === "legal" ? legalForm : individualForm;
-  const formData = new FormData(form);
+const handlePayment = async (method) => {
+  const formData = new FormData(legalForm);
 
   const data = {
-    type: formType,
-    period: selectedPeriod[formType],
     payment_method: method,
     ...Object.fromEntries(formData.entries()),
   };
@@ -85,7 +66,6 @@ const handlePayment = async (method, formType) => {
   } else {
     // Handle invoice generation
     try {
-      // Add your invoice generation logic here
       console.log("Generating invoice for:", data);
     } catch (error) {
       console.error("Error generating invoice:", error);
@@ -95,25 +75,23 @@ const handlePayment = async (method, formType) => {
 
 // Event Listeners
 backLink.addEventListener("click", handleBack);
-legalPersonButton.addEventListener("click", () => handlePersonTypeSelect("legal"));
-individualPersonButton.addEventListener("click", () => handlePersonTypeSelect("individual"));
 
-// License period radio buttons
-const licenseOptions = document.querySelectorAll(
-  'input[name="license-period-legal"], input[name="license-period-individual"]'
-);
-licenseOptions.forEach((option) => {
-  option.addEventListener("change", handleLicensePeriodChange);
+// Price cell buttons
+priceCells.forEach((cell) => {
+  cell.addEventListener("click", () => handlePriceSelect(cell));
 });
 
 // Payment buttons
-document.querySelectorAll(".payment-method-btn").forEach((button) => {
-  button.addEventListener("click", () => {
-    const method = button.classList.contains("invoice-btn") ? "invoice" : "card";
-    const formType = button.dataset.form;
-    handlePayment(method, formType);
-  });
-});
+const invoiceBtn = document.querySelector(".invoice-btn");
+const cardBtn = document.querySelector(".card-btn");
+
+if (invoiceBtn) {
+  invoiceBtn.addEventListener("click", () => handlePayment("invoice"));
+}
+
+if (cardBtn) {
+  cardBtn.addEventListener("click", () => handlePayment("card"));
+}
 
 // Initialize
 backLink.style.display = "none";

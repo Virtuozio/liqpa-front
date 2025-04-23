@@ -5,189 +5,215 @@
       <div class="payment-form__header">
         <a href="#" class="payment-form__back-link">← Повернутися до вибору форми підприємства</a>
         <h2 class="payment-form__title">Щоб купити програму Соната:</h2>
+        <h3 class="payment-form__subtitle">Оберіть тип ліцензії:</h3>
       </div>
 
       <div class="payment-form__content">
-        <!-- Person Type Selection -->
-        <div class="payment-form__person-type">
-          <h3 class="payment-form__subtitle">
-            Оберіть організаційно-правову форму вашого підприємства:
-          </h3>
-
-          <div class="payment-form__options">
-            <div class="payment-option">
-              <button class="payment-option__button payment-option__button--legal" type="button">
-                <h4>ЮРИДИЧНА ОСОБА</h4>
-                <p>Підприємства, бюджетні організації</p>
-                <p class="payment-option__price">1590 грн на рік</p>
-              </button>
-            </div>
-
-            <span class="payment-form__or">або</span>
-
-            <div class="payment-option">
-              <button
-                class="payment-option__button payment-option__button--individual"
-                type="button"
-              >
-                <h4>ФІЗИЧНА ОСОБА</h4>
-                <p>Підприємці, нотаріуси тощо</p>
-                <p class="payment-option__price">950 грн на рік</p>
-              </button>
-            </div>
+        <div class="price-table">
+          <!-- Top Row -->
+          <div class="price-row">
+            <button class="price-cell" type="button" data-period="12" data-price="1590">
+              <span class="price">1590грн</span>
+              <span class="period">на рік</span>
+              <span class="description">юридичні особи - 1 рік</span>
+            </button>
+            <button class="price-cell" type="button" data-period="12" data-price="590">
+              <span class="price">590грн</span>
+              <span class="period">на рік</span>
+              <span class="description">ФОП - 1 рік</span>
+            </button>
           </div>
-
-          <div class="payment-form__info">
-            <div class="payment-form__info-block">
-              <h4>Як сплатити за ліцензію?</h4>
-              <p>
-                Сплатити за ліцензійну версію програми Соната можна карткою Visa, Mastercard або,
-                отримавши рахунок, через банк
-              </p>
-            </div>
-
-            <div class="payment-form__info-block">
-              <h4>Якщо ліцензія ще не скінчилася?</h4>
-              <p>
-                За наявності чинної ліцензії, нова ліцензія вступає в дію з моменту закінчення
-                попередньої
-              </p>
-            </div>
+          <!-- Middle Row -->
+          <div class="price-row">
+            <button class="price-cell" type="button" data-period="6" data-price="1190">
+              <span class="price">1190грн</span>
+              <span class="period">на 6 місяців</span>
+              <span class="description">юридичні особи - 6 міс</span>
+            </button>
+            <button class="price-cell" type="button" data-period="3" data-price="790">
+              <span class="price">790грн</span>
+              <span class="period">на 3 місяці</span>
+              <span class="description">юридичні особи - 3 міс</span>
+            </button>
+          </div>
+          <!-- Bottom Row -->
+          <div class="price-row">
+            <button
+              class="price-cell price-cell--full"
+              type="button"
+              data-period="1"
+              data-price="0"
+            >
+              <span class="price">БЕЗКОШТОВНО</span>
+              <span class="period">демо на 1 місяць</span>
+              <span class="description">ЮРИДИЧНІ ОСОБИ</span>
+            </button>
           </div>
         </div>
 
-        <!-- Legal Person Registration Form -->
-        <div class="payment-form__registration payment-form__registration--legal visually-hidden">
-          <div class="registration-steps">
-            <div class="step">
-              <div class="step-number">1</div>
-              <h3>Оберіть період ліцензії:</h3>
-              <div class="license-options">
-                <label class="license-option">
-                  <input
-                    type="radio"
-                    name="license-period-legal"
-                    name="amount"
-                    value=""
-                    id="amountInput"
-                    checked
-                  />
-                  <span class="option-text">Ліцензія на 12 місяців</span>
-                  <span class="option-price">1590 грн</span>
-                </label>
-                <label class="license-option">
-                  <input type="radio" name="license-period-legal" value="6" />
-                  <span class="option-text">Ліцензія на 6 місяців</span>
-                  <span class="option-price">1190 грн</span>
-                </label>
-                <label class="license-option">
-                  <input type="radio" name="license-period-legal" value="3" />
-                  <span class="option-text">Ліцензія на 3 місяці</span>
-                  <span class="option-price">790 грн</span>
-                </label>
+        <!-- Registration Form -->
+        <div class="registration-form visually-hidden" id="registrationForm">
+          <form id="legalForm">
+            <div class="form-group">
+              <input type="text" name="edrpou" placeholder="Код ЄДРПОУ підприємства" required />
+            </div>
+            <div class="form-group">
+              <input type="text" name="company" placeholder="Назва підприємства" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required />
+              </div>
+              <div class="form-group">
+                <input type="tel" name="phone" placeholder="Телефон" required />
               </div>
             </div>
+            <input type="hidden" name="period" id="periodInput" value="" />
+            <input type="hidden" name="amount" id="amountInput" value="" />
 
-            <div class="step">
-              <div class="step-number">2</div>
-              <h3>Заповніть дані для ліцензії:</h3>
-              <form id="legalForm" class="registration-form">
-                <div class="form-group">
-                  <input type="text" name="edrpou" placeholder="Код ЄДРПОУ підприємства" required />
-                </div>
-                <div class="form-group">
-                  <input type="text" name="company" placeholder="Назва підприємства" required />
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <input type="email" name="email" placeholder="Email" required />
-                  </div>
-                  <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Телефон" required />
-                  </div>
-                </div>
-                <label class="budget-checkbox">
-                  <input type="checkbox" name="is_budget" />
-                  <span>Це бюджетна установа</span>
-                </label>
-              </form>
+            <div class="payment-methods">
+              <button type="button" class="payment-btn invoice-btn">Отримати рахунок</button>
+              <button type="button" class="payment-btn card-btn">Сплатити карткою</button>
             </div>
-
-            <div class="step">
-              <div class="step-number">3</div>
-              <h3>Оберіть спосіб оплати:</h3>
-              <div class="payment-methods">
-                <button class="payment-method-btn invoice-btn" data-form="legal">
-                  Отримати рахунок
-                  <span class="btn-subtitle">Для оплати через банк</span>
-                </button>
-                <span class="payment-method-or">або</span>
-                <button class="payment-method-btn card-btn" data-form="legal">
-                  Сплатити карткою
-                  <span class="btn-subtitle">Visa/Mastercard</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Individual Person Registration Form -->
-        <div
-          class="payment-form__registration payment-form__registration--individual visually-hidden"
-        >
-          <div class="license-period-individual">
-            <label class="license-option license-option--selected">
-              <input type="radio" name="license-period-individual" value="12" checked />
-              <span class="option-text">Ліцензія на 12 місяців</span>
-              <span class="option-price">590 грн</span>
-            </label>
-          </div>
-
-          <div class="registration-steps registration-steps--individual">
-            <div class="step">
-              <div class="step-number">1</div>
-              <h3>Заповніть дані для ліцензії:</h3>
-              <form id="individualForm" class="registration-form">
-                <div class="form-group">
-                  <input type="text" name="ipn" placeholder="ІПН" required />
-                </div>
-                <div class="form-group">
-                  <input type="text" name="name" placeholder="ПІБ" required />
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <input type="email" name="email" placeholder="Email" required />
-                  </div>
-                  <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Телефон" required />
-                  </div>
-                </div>
-              </form>
-            </div>
-
-            <div class="step">
-              <div class="step-number">2</div>
-              <h3>Оберіть спосіб оплати:</h3>
-              <div class="payment-methods">
-                <button class="payment-method-btn invoice-btn" data-form="individual">
-                  Отримати рахунок
-                  <span class="btn-subtitle">Для оплати через банк</span>
-                </button>
-                <span class="payment-method-or">або</span>
-                <button class="payment-method-btn card-btn" data-form="individual">
-                  Сплатити карткою
-                  <span class="btn-subtitle">Visa/Mastercard</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <p class="license-note">
-            Ліцензія активується автоматично після надходження грошей на розрахунковий рахунок
-          </p>
+          </form>
         </div>
       </div>
     </div>
   </section>
-  <div class="container"></div>
 </div>
+
+<style>
+  .payment-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .payment-form__header {
+    text-align: left;
+    margin-bottom: 30px;
+  }
+
+  .payment-form__title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .payment-form__subtitle {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 25px;
+  }
+
+  .price-table {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .price-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .price-cell {
+    flex: 1;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #f2cc21;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .price-cell:hover {
+    background-color: #f2cc21;
+  }
+
+  .price-cell:hover .price,
+  .price-cell:hover .period,
+  .price-cell:hover .description {
+    color: white;
+  }
+
+  .price-cell--full {
+    width: 100%;
+  }
+
+  .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f2cc21;
+  }
+
+  .period {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .description {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+  }
+
+  .registration-form {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+
+  .payment-methods {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .payment-btn {
+    padding: 12px 24px;
+    border: 2px solid #f2cc21;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .payment-btn:hover {
+    background: #f2cc21;
+    color: white;
+  }
+
+  .visually-hidden {
+    display: none;
+  }
+</style>
