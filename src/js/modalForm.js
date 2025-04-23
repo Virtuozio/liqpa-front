@@ -1,4 +1,3 @@
-import phoneNumberValidation from "./phoneNumberValidation";
 import sendEmail from "../api/emailJsSDK";
 import { getPayData } from "../api/pay";
 

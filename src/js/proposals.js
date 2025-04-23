@@ -1,4 +1,5 @@
 import { getPayData } from "../api/pay";
+import sendEmail from "../api/emailJsSDK";
 
 // Elements
 const paymentForm = document.querySelector(".payment-form");
@@ -63,17 +64,27 @@ const handlePriceSelect = (cell) => {
   showRegistrationForm();
 };
 
-// Handle payment methods
-const handlePayment = async (method) => {
+// Phone validation function
+const phoneNumberValidation = (phoneNumber) => {
+  const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+  return phoneRegex.test(phoneNumber);
+};
+
+// Handle form submission
+const handleSubmit = async (method) => {
+  // Get form data
   const formData = new FormData(legalForm);
+  const data = Object.fromEntries(formData.entries());
 
-  const data = {
-    payment_method: method,
-    ...Object.fromEntries(formData.entries()),
-  };
+  // Validate phone
+  if (!phoneNumberValidation(data.phone)) {
+    alert("Будь ласка, введіть коректний номер телефону");
+    return;
+  }
 
-  if (method === "card") {
-    try {
+  try {
+    if (method === "card") {
+      // Handle card payment
       const { data: liqpayData, signature } = await getPayData(data);
       LiqPayCheckout.init({
         data: liqpayData,
@@ -81,16 +92,20 @@ const handlePayment = async (method) => {
         embedTo: "#liqpay_checkout",
         mode: "embed",
       });
-    } catch (error) {
-      console.error("Error initializing payment:", error);
+    } else {
+      // Handle invoice generation
+      const status = await sendEmail(data);
+      if (status) {
+        alert("Рахунок буде відправлено на вказаний email");
+        showPriceSelection();
+        legalForm.reset();
+      } else {
+        alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
+      }
     }
-  } else {
-    // Handle invoice generation
-    try {
-      console.log("Generating invoice for:", data);
-    } catch (error) {
-      console.error("Error generating invoice:", error);
-    }
+  } catch (error) {
+    console.error("Error processing request:", error);
+    alert("Виникла помилка. Спробуйте пізніше або зв'яжіться з нами");
   }
 };
 
@@ -107,11 +122,11 @@ const invoiceBtn = document.querySelector(".invoice-btn");
 const cardBtn = document.querySelector(".card-btn");
 
 if (invoiceBtn) {
-  invoiceBtn.addEventListener("click", () => handlePayment("invoice"));
+  invoiceBtn.addEventListener("click", () => handleSubmit("invoice"));
 }
 
 if (cardBtn) {
-  cardBtn.addEventListener("click", () => handlePayment("card"));
+  cardBtn.addEventListener("click", () => handleSubmit("card"));
 }
 
 // Initialize
