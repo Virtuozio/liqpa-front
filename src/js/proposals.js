@@ -9,6 +9,7 @@ const priceCells = document.querySelectorAll(".price-cell");
 const legalForm = document.getElementById("legalForm");
 const periodInput = document.getElementById("periodInput");
 const amountInput = document.getElementById("amountInput");
+const subtitle = document.querySelector(".payment-form__subtitle");
 
 // Show registration form
 const showRegistrationForm = () => {
@@ -22,6 +23,8 @@ const showPriceSelection = () => {
   priceTable.classList.remove("visually-hidden");
   registrationForm.classList.add("visually-hidden");
   backLink.style.display = "none";
+  // Reset subtitle text when going back
+  subtitle.textContent = "Оберіть тип ліцензії:";
 };
 
 // Handle back button
@@ -38,6 +41,24 @@ const handlePriceSelect = (cell) => {
   // Update hidden inputs
   if (periodInput) periodInput.value = period;
   if (amountInput) amountInput.value = price;
+
+  // Update subtitle text based on selection
+  let subtitleText = "";
+  if (price === "1590") {
+    subtitleText = "Супровід ПЗ Соната 1590 грн юридична особа - 12 місяців";
+  } else if (price === "590") {
+    subtitleText = "Супровід ПЗ Соната 590 грн ФОП - 12 місяців";
+  } else if (price === "1190") {
+    subtitleText = "Супровід ПЗ Соната 1190 грн юридична особа - 6 місяців";
+  } else if (price === "790") {
+    subtitleText = "Супровід ПЗ Соната 790 грн юридична особа - 3 місяці";
+  } else if (price === "0") {
+    subtitleText = "Супровід ПЗ Соната БЕЗКОШТОВНО демо - 1 місяць";
+  }
+
+  if (subtitle) {
+    subtitle.textContent = subtitleText;
+  }
 
   showRegistrationForm();
 };
