@@ -84,6 +84,12 @@ const handleSubmit = async (method) => {
 
   try {
     if (method === "card") {
+      // Hide payment form content
+      const paymentFormContent = document.querySelector(".payment-form__content");
+      if (paymentFormContent) {
+        paymentFormContent.classList.add("visually-hidden");
+      }
+
       // Handle card payment
       const { data: liqpayData, signature } = await getPayData(data);
       LiqPayCheckout.init({
