@@ -53,29 +53,68 @@
 
         <!-- Registration Form -->
         <div class="registration-form visually-hidden" id="registrationForm">
-          <form id="legalForm">
-            <div class="form-group">
-              <input type="text" name="edrpou" placeholder="Код ЄДРПОУ підприємства" required />
-            </div>
-            <div class="form-group">
-              <input type="text" name="company" placeholder="Назва підприємства" required />
-            </div>
-            <div class="form-row">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Заповніть дані для ліцензії:</h3>
+            <form id="legalForm">
               <div class="form-group">
-                <input type="email" name="email" placeholder="Email" required />
+                <input
+                  type="text"
+                  name="edrpou"
+                  placeholder="Код ЄДРПОУ підприємства"
+                  class="form-input"
+                  required
+                />
               </div>
               <div class="form-group">
-                <input type="tel" name="phone" placeholder="Телефон" required />
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Назва підприємства"
+                  class="form-input"
+                  required
+                />
               </div>
-            </div>
-            <input type="hidden" name="period" id="periodInput" value="" />
-            <input type="hidden" name="amount" id="amountInput" value="" />
+              <div class="form-row">
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    class="form-input"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Телефон"
+                    class="form-input"
+                    required
+                  />
+                </div>
+              </div>
+              <input type="hidden" name="period" id="periodInput" value="" />
+              <input type="hidden" name="amount" id="amountInput" value="" />
+            </form>
+          </div>
 
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Оберіть спосіб оплати:</h3>
             <div class="payment-methods">
-              <button type="button" class="payment-btn invoice-btn">Отримати рахунок</button>
-              <button type="button" class="payment-btn card-btn">Сплатити карткою</button>
+              <button type="button" class="payment-btn invoice-btn">
+                Отримати рахунок
+                <span class="payment-subtitle">Для оплати через банк</span>
+              </button>
+              <span class="payment-or">або</span>
+              <button type="button" class="payment-btn card-btn">
+                Сплатити карткою
+                <span class="payment-subtitle">Visa/Mastercard</span>
+              </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -174,16 +213,42 @@
     border-radius: 12px;
   }
 
+  .step {
+    margin-bottom: 30px;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    background: #333;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .step-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
   .form-group {
     margin-bottom: 15px;
   }
 
-  .form-group input {
+  .form-input {
     width: 100%;
-    padding: 12px;
+    padding: 12px 15px;
     border: 1px solid #ddd;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 16px;
+  }
+
+  .form-input::placeholder {
+    color: #666;
   }
 
   .form-row {
@@ -191,25 +256,61 @@
     gap: 20px;
   }
 
-  .payment-methods {
-    margin-top: 25px;
+  .form-row .form-group {
+    flex: 1;
+  }
+
+  .form-checkbox {
+    margin: 20px 0;
+  }
+
+  .checkbox-label {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .checkbox-text {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .payment-methods {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
 
   .payment-btn {
-    padding: 12px 24px;
+    flex: 1;
+    padding: 15px;
     border: 2px solid #f2cc21;
-    border-radius: 6px;
+    border-radius: 8px;
     background: white;
     cursor: pointer;
-    font-size: 16px;
+    text-align: center;
     transition: all 0.3s ease;
   }
 
   .payment-btn:hover {
     background: #f2cc21;
+    color: white;
+  }
+
+  .payment-subtitle {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+  }
+
+  .payment-or {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .payment-btn:hover .payment-subtitle {
     color: white;
   }
 
