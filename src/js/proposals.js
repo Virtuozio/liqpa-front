@@ -6,8 +6,10 @@ const paymentForm = document.querySelector(".payment-form");
 const backLink = document.querySelector(".payment-form__back-link");
 const priceTable = document.querySelector(".price-table");
 const registrationForm = document.getElementById("registrationForm");
+const freeLicenseForm = document.getElementById("freeLicenseForm");
 const priceCells = document.querySelectorAll(".price-cell");
 const legalForm = document.getElementById("legalForm");
+const freeLicenseDataForm = document.getElementById("freeLicenseDataForm");
 const periodInput = document.getElementById("periodInput");
 const amountInput = document.getElementById("amountInput");
 const subtitle = document.querySelector(".payment-form__subtitle");
@@ -16,6 +18,15 @@ const subtitle = document.querySelector(".payment-form__subtitle");
 const showRegistrationForm = () => {
   priceTable.classList.add("visually-hidden");
   registrationForm.classList.remove("visually-hidden");
+  freeLicenseForm.classList.add("visually-hidden");
+  backLink.style.display = "inline-block";
+};
+
+// Show free license form
+const showFreeLicenseForm = () => {
+  priceTable.classList.add("visually-hidden");
+  registrationForm.classList.add("visually-hidden");
+  freeLicenseForm.classList.remove("visually-hidden");
   backLink.style.display = "inline-block";
 };
 
@@ -23,6 +34,7 @@ const showRegistrationForm = () => {
 const showPriceSelection = () => {
   priceTable.classList.remove("visually-hidden");
   registrationForm.classList.add("visually-hidden");
+  freeLicenseForm.classList.add("visually-hidden");
   backLink.style.display = "none";
   // Reset subtitle text when going back
   subtitle.textContent = "Оберіть тип ліцензії:";
@@ -61,7 +73,51 @@ const handlePriceSelect = (cell) => {
     subtitle.textContent = subtitleText;
   }
 
-  showRegistrationForm();
+  // Show appropriate form based on price
+  if (price === "0") {
+    showFreeLicenseForm();
+  } else {
+    showRegistrationForm();
+  }
+};
+
+// Handle free license form submission
+const handleFreeLicenseSubmit = async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(freeLicenseDataForm);
+  const data = Object.fromEntries(formData.entries());
+
+  // Validate EDRPOU
+  const edrpou = data.edrpou.trim();
+  if (!/^\d{8}$|^\d{10}$/.test(edrpou)) {
+    alert("Код ЄДРПОУ повинен складатися з 8 або 10 цифр");
+    return;
+  }
+
+  // Validate phone
+  if (!phoneNumberValidation(data.phone)) {
+    alert("Будь ласка, введіть коректний номер телефону");
+    return;
+  }
+
+  try {
+    // Add period and amount for free license
+    data.period = "1";
+    data.amount = "0";
+
+    const status = await sendEmail(data);
+    if (status) {
+      alert("Дані для отримання безкоштовної ліцензії відправлено на вказаний email");
+      showPriceSelection();
+      freeLicenseDataForm.reset();
+    } else {
+      alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
+    }
+  } catch (error) {
+    console.error("Error processing free license request:", error);
+    alert("Виникла помилка. Спробуйте пізніше або зв'яжіться з нами");
+  }
 };
 
 // Phone validation function
@@ -122,6 +178,11 @@ backLink.addEventListener("click", handleBack);
 priceCells.forEach((cell) => {
   cell.addEventListener("click", () => handlePriceSelect(cell));
 });
+
+// Free license form submission
+if (freeLicenseDataForm) {
+  freeLicenseDataForm.addEventListener("submit", handleFreeLicenseSubmit);
+}
 
 // Payment buttons
 const invoiceBtn = document.querySelector(".invoice-btn");

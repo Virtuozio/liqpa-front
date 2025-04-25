@@ -116,6 +116,58 @@
             </div>
           </div>
         </div>
+
+        <!-- Free License Form -->
+        <div class="registration-form visually-hidden" id="freeLicenseForm">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Заповніть дані для отримання безкоштовної ліцензії:</h3>
+            <form id="freeLicenseDataForm">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="edrpou"
+                  placeholder="Код ЄДРПОУ підприємства"
+                  class="form-input"
+                  required
+                />
+                <small class="helper-text">Код повинен складатися з 8 або 10 цифр</small>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Назва підприємства"
+                  class="form-input"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    class="form-input"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Телефон"
+                    class="form-input"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="payment-btn free-license-btn">
+                Отримати ліцензію безкоштовно
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
       <div id="liqpay_checkout"></div>
     </div>
