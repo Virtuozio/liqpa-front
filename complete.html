@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Дякуємо за замовлення</title>
+    <style>
+      body {
+        font-family: "Avenir Next Cyr", Arial, sans-serif;
+        background: #f8f9ff;
+        margin: 0;
+        padding: 0;
+        color: #222;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        padding: 32px 24px 40px 24px;
+      }
+      h1 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 18px;
+        color: #222;
+      }
+      .email {
+        color: #0056d6;
+        font-weight: bold;
+      }
+      .info {
+        margin-bottom: 18px;
+        font-size: 1.1rem;
+      }
+      .warning {
+        display: flex;
+        align-items: flex-start;
+        background: #fffbe6;
+        border-left: 4px solid #f2cc21;
+        padding: 10px 14px;
+        border-radius: 6px;
+        margin-bottom: 18px;
+        font-size: 1rem;
+      }
+      .warning-icon {
+        color: #f2cc21;
+        font-size: 1.3em;
+        margin-right: 8px;
+        margin-top: 2px;
+      }
+      a {
+        color: #0056d6;
+        text-decoration: underline;
+      }
+      .section-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin: 32px 0 16px 0;
+      }
+      .video {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {});
+    </script>
+    <div class="container">
+      <h1>Дякуємо за замовлення</h1>
+      <div class="info">
+        На email <span class="email" id="userEmail"></span> скоро буде надіслано лист з результатом
+        активації
+      </div>
+      <div class="warning">
+        <span class="warning-icon">&#9888;</span>
+        <span
+          >Якщо ви не отримали лист від нас протягом 5 хвилин, можливо він потрапив до папки
+          <b>Спам</b> чи <b>Промоакції</b> (для gmail) та перевірте правильність написання
+          email</span
+        >
+      </div>
+      <div class="info">
+        Якщо у Вас ще не встановлена програма Соната, то зараз Ви можете
+        <a href="https://sonatazvit.com.ua/download" target="_blank">завантажити</a> і встановити її
+        на свій комп'ютер і створити профіль Вашого підприємства.
+      </div>
+      <div class="section-title">Як створити перший профіль підприємства:</div>
+      <iframe
+        class="video"
+        src="https://www.youtube.com/embed/2v6QwQwQw0w"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+      <div class="section-title">Питання та відповіді</div>
+      <!-- Add FAQ or contact info here if needed -->
+    </div>
+    <script>
+      // Extract email from query string and display
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get("email");
+      if (email) {
+        document.getElementById("userEmail").textContent = email;
+      }
+    </script>
+  </body>
+</html>
