@@ -396,33 +396,53 @@
 
 // Registration Form
 .registration-form {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
   .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 15px;
+    position: relative;
+
+    .form-input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+
+      &::placeholder {
+        color: #666;
+      }
+
+      &.error {
+        border-color: #ff4d4f;
+      }
+    }
+
+    .error-message {
+      color: #ff4d4f;
+      font-size: 12px;
+      margin-top: 4px;
+      position: absolute;
+      bottom: -18px;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+
+      &.visible {
+        opacity: 1;
+      }
+    }
   }
 
   .form-row {
     display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 20px;
 
     .form-group {
       flex: 1;
-      margin-bottom: 0;
-    }
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-
-    &:focus {
-      border-color: #f2cc21;
-      outline: none;
     }
   }
 }
@@ -606,38 +626,6 @@
       font-size: 14px;
       color: #666;
       text-align: center;
-    }
-  }
-}
-
-.registration-form {
-  margin-top: 30px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-
-  .form-group {
-    margin-bottom: 15px;
-
-    .form-input {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-
-      &::placeholder {
-        color: #666;
-      }
-    }
-  }
-
-  .form-row {
-    display: flex;
-    gap: 20px;
-
-    .form-group {
-      flex: 1;
     }
   }
 }

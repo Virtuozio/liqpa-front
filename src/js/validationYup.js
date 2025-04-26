@@ -1,4 +1,6 @@
-const schema = yup.object().shape({
+import * as yup from "yup";
+
+export const schema = yup.object().shape({
   edrpou: yup
     .string()
     .matches(/^\d{8,10}$/, "Невірний код ЄДРПОУ")

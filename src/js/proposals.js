@@ -1,6 +1,6 @@
 import { getPayData } from "../api/pay";
 import sendEmail from "../api/emailJsSDK";
-
+import { schema } from "./validationYup";
 // Elements
 const paymentForm = document.querySelector(".payment-form");
 const backLink = document.querySelector(".payment-form__back-link");
@@ -88,24 +88,12 @@ const handleFreeLicenseSubmit = async (e) => {
   const formData = new FormData(freeLicenseDataForm);
   const data = Object.fromEntries(formData.entries());
 
-  // Validate EDRPOU
-  const edrpou = data.edrpou.trim();
-  if (!/^\d{8}$|^\d{10}$/.test(edrpou)) {
-    alert("Код ЄДРПОУ повинен складатися з 8 або 10 цифр");
-    return;
-  }
-
-  // Validate phone
-  if (!phoneNumberValidation(data.phone)) {
-    alert("Будь ласка, введіть коректний номер телефону");
-    return;
-  }
-
   try {
     // Add period and amount for free license
     data.period = "1";
     data.amount = "0";
-
+    await schema.validate(data, { abortEarly: false });
+    console.log("✅ Валідація пройшла успішно", formData);
     const status = await sendEmail(data);
     if (status) {
       alert("Дані для отримання безкоштовної ліцензії відправлено на вказаний email");
@@ -120,23 +108,12 @@ const handleFreeLicenseSubmit = async (e) => {
   }
 };
 
-// Phone validation function
-const phoneNumberValidation = (phoneNumber) => {
-  const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-  return phoneRegex.test(phoneNumber);
-};
-
 // Handle form submission
 const handleSubmit = async (method) => {
   // Get form data
   const formData = new FormData(legalForm);
   const data = Object.fromEntries(formData.entries());
-
-  // Validate phone
-  if (!phoneNumberValidation(data.phone)) {
-    alert("Будь ласка, введіть коректний номер телефону");
-    return;
-  }
+  //await schema.validate(data, { abortEarly: false });
 
   try {
     if (method === "card") {

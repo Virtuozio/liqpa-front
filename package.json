@@ -23,6 +23,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "axios": "^1.8.4",
-    "shx": "^0.4.0"
+    "shx": "^0.4.0",
+    "yup": "^1.6.1"
   }
 }
