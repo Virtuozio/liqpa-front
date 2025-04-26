@@ -402,7 +402,7 @@
   border-radius: 12px;
 
   .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 24px;
     position: relative;
 
     .form-input {
@@ -418,20 +418,24 @@
 
       &.error {
         border-color: #ff4d4f;
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.1);
       }
     }
 
     .error-message {
       color: #ff4d4f;
-      font-size: 12px;
-      margin-top: 4px;
+      font-size: 13px;
+      margin-top: 6px;
       position: absolute;
-      bottom: -18px;
       left: 0;
+      bottom: -22px;
+      background: #fff;
+      padding: 0 4px;
       opacity: 0;
       transition: opacity 0.2s ease;
+      z-index: 2;
 
-      &.visible {
+      &.show {
         opacity: 1;
       }
     }

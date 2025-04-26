@@ -22,6 +22,14 @@ export const getPayData = async (formData) => {
     throw error;
   }
 };
+export const sendPayStatus = async (formData) => {
+  try {
+    const { data } = await instance.post("/status", formData);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 setInterval(startPayService, 300000);
 startPayService();

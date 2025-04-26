@@ -103,8 +103,11 @@ const handleFreeLicenseSubmit = async (e) => {
       alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
     }
   } catch (error) {
-    console.error("Error processing free license request:", error);
-    alert("Виникла помилка. Спробуйте пізніше або зв'яжіться з нами");
+    if (error.name === "ValidationError" && error.inner) {
+      error.inner.forEach((err) => {
+        showError(freeLicenseDataForm, err.path, err.message);
+      });
+    } else alert("Виникла помилка. Спробуйте пізніше або зв'яжіться з нами");
   }
 };
 
@@ -113,7 +116,15 @@ const handleSubmit = async (method) => {
   // Get form data
   const formData = new FormData(legalForm);
   const data = Object.fromEntries(formData.entries());
-  await schema.validate(data, { abortEarly: false });
+  try {
+    await schema.validate(data, { abortEarly: false });
+  } catch (error) {
+    if (error.name === "ValidationError" && error.inner) {
+      error.inner.forEach((err) => {
+        showError(legalForm, err.path, err.message);
+      });
+    } else alert("Виникла помилка. Спробуйте пізніше або зв'яжіться з нами");
+  }
 
   try {
     if (method === "card") {
@@ -131,21 +142,20 @@ const handleSubmit = async (method) => {
         embedTo: "#liqpay_checkout",
         mode: "embed",
       });
+      const status = await sendPayStatus({ data: liqpayData, signature: signature });
+      console.log("🚀 ~ handleSubmit ~ status:", status);
     } else {
       // Handle invoice generation
-      const status = await sendEmail(data);
-      if (status) {
-        alert("Рахунок буде відправлено на вказаний email");
-        showPriceSelection();
-        legalForm.reset();
-      } else {
-        alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
-      }
+      //const status = await sendEmail(data);
+      // if (status) {
+      //   alert("Рахунок буде відправлено на вказаний email");
+      //   showPriceSelection();
+      //   legalForm.reset();
+      // } else {
+      //   //alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
+      // }
     }
-  } catch (error) {
-    console.error("Error processing request:", error);
-    alert("Виникла помилка. Спробуйте пізніше або зв'яжіться з нами");
-  }
+  } catch (error) {}
 };
 
 // Event Listeners
@@ -175,3 +185,53 @@ if (cardBtn) {
 
 // Initialize
 backLink.style.display = "none";
+
+// Helper functions for form validation
+const showError = (formElement, fieldName, errorMessage) => {
+  const input = formElement.querySelector(`[name="${fieldName}"]`);
+  const errorSpan = formElement.querySelector(`[data-field="${fieldName}"]`);
+  if (input && errorSpan) {
+    input.classList.add("error");
+    errorSpan.textContent = errorMessage;
+    errorSpan.classList.add("show");
+  }
+};
+
+const clearError = (formElement, fieldName) => {
+  const input = formElement.querySelector(`[name="${fieldName}"]`);
+  const errorSpan = formElement.querySelector(`[data-field="${fieldName}"]`);
+  if (input && errorSpan) {
+    input.classList.remove("error");
+    errorSpan.textContent = "";
+    errorSpan.classList.remove("show");
+  }
+};
+
+const clearAllErrors = (formElement) => {
+  const inputs = formElement.querySelectorAll(".form-input");
+  const errorSpans = formElement.querySelectorAll(".error-message");
+  inputs.forEach((input) => input.classList.remove("error"));
+  errorSpans.forEach((span) => {
+    span.textContent = "";
+    span.classList.remove("show");
+  });
+};
+
+const addInputValidation = (form) => {
+  const inputs = form.querySelectorAll(".form-input");
+  inputs.forEach((input) => {
+    input.addEventListener("input", async () => {
+      const fieldName = input.getAttribute("name");
+      const value = input.value;
+      try {
+        await schema.validateAt(fieldName, { [fieldName]: value });
+        clearError(form, fieldName);
+      } catch (error) {
+        showError(form, fieldName, error.message);
+      }
+    });
+  });
+};
+
+if (freeLicenseDataForm) addInputValidation(freeLicenseDataForm);
+if (legalForm) addInputValidation(legalForm);
