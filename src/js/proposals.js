@@ -113,7 +113,7 @@ const handleSubmit = async (method) => {
   // Get form data
   const formData = new FormData(legalForm);
   const data = Object.fromEntries(formData.entries());
-  //await schema.validate(data, { abortEarly: false });
+  await schema.validate(data, { abortEarly: false });
 
   try {
     if (method === "card") {
