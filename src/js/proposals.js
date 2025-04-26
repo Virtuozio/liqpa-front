@@ -116,23 +116,11 @@ const handleSubmit = async (method) => {
   // Get form data
   const formData = new FormData(legalForm);
   const data = Object.fromEntries(formData.entries());
-  try {
-    await schema.validate(data, { abortEarly: false });
-  } catch (error) {
-    if (error.name === "ValidationError" && error.inner) {
-      error.inner.forEach((err) => {
-        showError(legalForm, err.path, err.message);
-      });
-    } else alert("Виникла помилка. Спробуйте пізніше або зв'яжіться з нами");
-  }
 
   try {
     if (method === "card") {
       // Hide payment form content
-      const paymentFormContent = document.querySelector(".payment-form__content");
-      if (paymentFormContent) {
-        paymentFormContent.classList.add("visually-hidden");
-      }
+      await schema.validate(data, { abortEarly: false });
 
       // Handle card payment
       const { data: liqpayData, signature } = await getPayData(data);
@@ -142,20 +130,32 @@ const handleSubmit = async (method) => {
         embedTo: "#liqpay_checkout",
         mode: "embed",
       });
-      const status = await sendPayStatus({ data: liqpayData, signature: signature });
-      console.log("🚀 ~ handleSubmit ~ status:", status);
+      const paymentFormContent = document.querySelector(".payment-form__content");
+      if (paymentFormContent) {
+        paymentFormContent.classList.add("visually-hidden");
+      }
+      LiqPayCheckout.on("complete", async () => {
+        const status = await sendPayStatus({ data: liqpayData, signature: signature });
+        console.log("🚀 ~ handleSubmit ~ status:", status);
+      });
     } else {
       // Handle invoice generation
-      //const status = await sendEmail(data);
-      // if (status) {
-      //   alert("Рахунок буде відправлено на вказаний email");
-      //   showPriceSelection();
-      //   legalForm.reset();
-      // } else {
-      //   //alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
-      // }
+      const status = await sendEmail(data);
+      if (status) {
+        alert("Рахунок буде відправлено на вказаний email");
+        showPriceSelection();
+        legalForm.reset();
+      } else {
+        alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
+      }
     }
-  } catch (error) {}
+  } catch (error) {
+    if (error.name === "ValidationError" && error.inner) {
+      error.inner.forEach((err) => {
+        showError(legalForm, err.path, err.message);
+      });
+    }
+  }
 };
 
 // Event Listeners
