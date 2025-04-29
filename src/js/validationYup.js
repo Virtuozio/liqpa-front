@@ -21,5 +21,5 @@ export const schema = yup.object().shape({
     .matches(phoneRegExp, "Невірний формат телефону")
     .required("Телефон обов'язковий"),
   period: yup.string().required("Період обов'язковий"),
-  amount: yup.number().positive("Сума має бути додатною").required("Сума обов'язкова"),
+  amount: yup.number().min(0, "Сума має бути додатною").required("Сума обов'язкова"),
 });

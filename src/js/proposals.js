@@ -1,5 +1,4 @@
-import { getPayData } from "../api/pay";
-import sendEmail from "../api/emailJsSDK";
+import { getPayData, sendInvoice, sendPayStatus } from "../api/pay";
 import { schema } from "./validationYup";
 // Elements
 const paymentForm = document.querySelector(".payment-form");
@@ -91,13 +90,13 @@ const handleFreeLicenseSubmit = async (e) => {
   try {
     // Add period and amount for free license
     data.period = "1";
-    data.amount = "0";
+    data.amount = 0;
     await schema.validate(data, { abortEarly: false });
-    const status = await sendEmail(data);
+    const status = await sendInvoice(data);
     if (status) {
-      alert("Дані для отримання безкоштовної ліцензії відправлено на вказаний email");
       showPriceSelection();
       freeLicenseDataForm.reset();
+      // window.location.href = "/complete.html";
     } else {
       alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
     }
@@ -122,24 +121,32 @@ const handleSubmit = async (method) => {
       await schema.validate(data, { abortEarly: false });
 
       // Handle card payment
-      const { data: liqpayData, signature } = await getPayData(data);
-      LiqPayCheckout.init({
-        data: liqpayData,
-        signature: signature,
-        embedTo: "#liqpay_checkout",
-        mode: "embed",
-      });
+      try {
+        // Show loader
+        const loader = document.getElementById("loader");
+        loader.classList.remove("visually-hidden");
+        const { data: liqpayData, signature } = await getPayData(data);
+        LiqPayCheckout.init({
+          data: liqpayData,
+          signature: signature,
+          embedTo: "#liqpay_checkout",
+          mode: "embed",
+        });
+      } catch (error) {
+        loader.classList.add("visually-hidden");
+      } finally {
+        // Hide loader
+        const loader = document.getElementById("loader");
+        loader.classList.add("visually-hidden");
+      }
+
       const paymentFormContent = document.querySelector(".payment-form__content");
       if (paymentFormContent) {
         paymentFormContent.classList.add("visually-hidden");
       }
-      LiqPayCheckout.on("complete", async () => {
-        const status = await sendPayStatus({ data: liqpayData, signature: signature });
-        console.log("🚀 ~ handleSubmit ~ status:", status);
-      });
     } else {
       // Handle invoice generation
-      const status = await sendEmail(data);
+      const status = await sendInvoice(data);
       if (status) {
         alert("Рахунок буде відправлено на вказаний email");
         showPriceSelection();

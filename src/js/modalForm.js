@@ -1,4 +1,3 @@
-import sendEmail from "../api/emailJsSDK";
 import { getPayData } from "../api/pay";
 
 // elements
