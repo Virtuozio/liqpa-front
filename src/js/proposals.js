@@ -93,7 +93,6 @@ const handleFreeLicenseSubmit = async (e) => {
     data.period = "1";
     data.amount = "0";
     await schema.validate(data, { abortEarly: false });
-    console.log("✅ Валідація пройшла успішно", formData);
     const status = await sendEmail(data);
     if (status) {
       alert("Дані для отримання безкоштовної ліцензії відправлено на вказаний email");

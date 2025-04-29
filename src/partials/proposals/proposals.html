@@ -133,10 +133,8 @@
                   name="edrpou"
                   placeholder="Код ЄДРПОУ підприємства"
                   class="form-input"
-                  required
                 />
                 <span class="error-message" data-field="edrpou"></span>
-                <small class="helper-text">Код повинен складатися з 8 або 10 цифр</small>
               </div>
               <div class="form-group">
                 <input
@@ -144,35 +142,24 @@
                   name="company"
                   placeholder="Назва підприємства"
                   class="form-input"
-                  required
                 />
                 <span class="error-message" data-field="company"></span>
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    class="form-input"
-                    required
-                  />
+                  <input type="email" name="email" placeholder="Email" class="form-input" />
                   <span class="error-message" data-field="email"></span>
                 </div>
                 <div class="form-group">
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Телефон"
-                    class="form-input"
-                    required
-                  />
+                  <input type="tel" name="phone" placeholder="Телефон" class="form-input" />
                   <span class="error-message" data-field="phone"></span>
                 </div>
               </div>
-              <button type="submit" class="payment-btn free-license-btn">
-                Отримати ліцензію безкоштовно
-              </button>
+              <div class="payment-methods">
+                <button type="submit" class="payment-btn free-license-btn">
+                  Отримати ліцензію безкоштовно
+                </button>
+              </div>
             </form>
           </div>
         </div>
