@@ -23,7 +23,6 @@ export const getPayData = async (formData) => {
     throw error;
   }
 };
-
 export const sendPayStatus = async (formData) => {
   try {
     const { data } = await instance.post("/status", formData).then(() => {
@@ -39,24 +38,6 @@ export const sendInvoice = async (formData) => {
   try {
     const { data } = await instance.post("/invoice", formData);
     return data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const createInvoice = async (formData) => {
-  try {
-    const { data } = await instance.post("/create-invoice", formData);
-    return data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const initInvoicePage = async (orderId) => {
-  try {
-    const response = await instance.get(`api/i/${orderId}`);
-    return response;
   } catch (error) {
     throw error;
   }
