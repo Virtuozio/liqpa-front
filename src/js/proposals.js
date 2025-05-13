@@ -1,4 +1,4 @@
-import { getPayData, sendInvoice, sendPayStatus } from "../api/pay";
+import { getPayData, initInvoicePage, sendInvoice, createInvoice } from "../api/pay";
 import { schema } from "./validationYup";
 // Elements
 const paymentForm = document.querySelector(".payment-form");
@@ -96,7 +96,7 @@ const handleFreeLicenseSubmit = async (e) => {
     if (status) {
       showPriceSelection();
       freeLicenseDataForm.reset();
-      // window.location.href = "/complete.html";
+      window.location.href = "/complete.html";
     } else {
       alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
     }
@@ -145,11 +145,11 @@ const handleSubmit = async (method) => {
         paymentFormContent.classList.add("visually-hidden");
       }
     } else {
-      // Handle invoice generation
-      const status = await sendInvoice(data);
+      await schema.validate(data, { abortEarly: false });
+      const status = await createInvoice(data);
       if (status) {
-        alert("Рахунок буде відправлено на вказаний email");
-        showPriceSelection();
+        await initInvoicePage(status.order_id);
+        window.location.href = `/i/${status.order_id}`;
         legalForm.reset();
       } else {
         alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
