@@ -1,9 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/api",
   timeout: 1000,
-  //baseURL: "https://liqpay-web-project.onrender.com",
+  baseURL: "https://liqpay-web-project.onrender.com/api",
 });
 
 export const startPayService = async () => {
