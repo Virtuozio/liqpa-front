@@ -149,7 +149,7 @@ const handleSubmit = async (method) => {
       const status = await createInvoice(data);
       if (status) {
         await initInvoicePage(status.order_id);
-        window.location.href = `https://liqpa-front.onrender.com/api/i/${status.order_id}`;
+        window.location.href = `https://liqpay-web-project.onrender.com/api/i/${status.order_id}`;
         legalForm.reset();
       } else {
         alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
