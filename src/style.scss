@@ -10,6 +10,9 @@
 @use "./partials/backdrop/backdrop";
 @use "./partials/spinner/spinner";
 
+//invoice import
+@use "./sass/invoice.scss";
+
 // policy imports
 @use "./sass/policy.scss";
 @use "./partials/policyHeader/policyHeader";

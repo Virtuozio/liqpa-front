@@ -149,7 +149,7 @@ const handleSubmit = async (method) => {
       const status = await createInvoice(data);
       if (status) {
         await initInvoicePage(status.order_id);
-        window.location.href = `http://localhost:3000/i/${status.order_id}`;
+        window.location.href = `http://localhost:1234/api/i/${status.order_id}`;
         legalForm.reset();
       } else {
         alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");

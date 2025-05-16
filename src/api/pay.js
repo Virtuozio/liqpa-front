@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "/",
   timeout: 1000,
   //baseURL: "https://liqpay-web-project.onrender.com",
 });
@@ -27,7 +27,7 @@ export const getPayData = async (formData) => {
 export const sendPayStatus = async (formData) => {
   try {
     const { data } = await instance.post("/status", formData).then(() => {
-      window.location.href = "https://liqpa-front.onrender.com/complete.html";
+      window.location.href = "/complete.html";
     });
     return data;
   } catch (error) {
@@ -55,7 +55,7 @@ export const createInvoice = async (formData) => {
 
 export const initInvoicePage = async (orderId) => {
   try {
-    const response = await instance.get(`i/${orderId}`);
+    const response = await instance.get(`/i/${orderId}`);
     return response;
   } catch (error) {
     throw error;
