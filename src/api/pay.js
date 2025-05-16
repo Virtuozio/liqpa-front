@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/",
+  baseURL: "/api",
   timeout: 1000,
   //baseURL: "https://liqpay-web-project.onrender.com",
 });
