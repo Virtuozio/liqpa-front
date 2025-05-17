@@ -1,0 +1,136 @@
+.sonata-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
+  font-family: "Avenir Next Cyr", Arial, sans-serif;
+  z-index: 1000;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    height: 48px;
+    min-height: 48px;
+    justify-content: space-between;
+  }
+
+  &__logo-block {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+  }
+
+  &__flag {
+    display: flex;
+    flex-direction: column;
+    margin-right: 8px;
+    .sonata-header__flag-blue {
+      width: 28px;
+      height: 8px;
+      background: #0057b7;
+      border-radius: 2px 2px 0 0;
+    }
+    .sonata-header__flag-yellow {
+      width: 28px;
+      height: 8px;
+      background: #ffd700;
+      border-radius: 0 0 2px 2px;
+    }
+  }
+
+  &__logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    margin-right: 6px;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+  }
+  &__brand-main {
+    font-size: 1.3rem;
+    color: #3570b7;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-family: inherit;
+  }
+  &__brand-sub {
+    font-size: 0.85rem;
+    color: #3570b7;
+    opacity: 0.7;
+    margin-top: 2px;
+    font-family: inherit;
+  }
+
+  &__nav ul {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  &__nav a {
+    color: #232323;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 2px 6px;
+    transition: color 0.2s;
+    &.active,
+    &:hover {
+      color: #3570b7;
+      font-weight: 600;
+    }
+  }
+
+  // Responsive
+  @media (max-width: 900px) {
+    &__container {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+      padding: 8px 8px;
+    }
+    &__nav ul {
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    &__logo-block {
+      margin-bottom: 6px;
+    }
+  }
+  @media (max-width: 600px) {
+    &__container {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 4px 4px;
+    }
+    &__logo {
+      width: 28px;
+      height: 28px;
+    }
+    &__brand-main {
+      font-size: 1rem;
+    }
+    &__nav ul {
+      gap: 6px;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+body,
+main {
+  padding-top: 56px; // Adjust if header height changes
+}
