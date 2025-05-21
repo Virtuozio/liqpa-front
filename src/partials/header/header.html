@@ -8,7 +8,7 @@
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="#f2cc21"
-        width="16"
+        width="24"
         viewBox="0 0 300 300"
         stroke="currentColor"
       >
@@ -21,16 +21,36 @@
         <span class="sonata-header__brand-sub">Офіційний дилер</span>
       </span>
     </a>
+
     <nav class="sonata-header__nav">
       <ul>
-        <li><a href="#hero" class="active">Головна</a></li>
+        <li><a href="/" class="active">Головна</a></li>
         <li><a href="#proposals">Придбати</a></li>
-        <li><a href="#download">Завантажити</a></li>
         <li><a href="#free">Безкоштовно</a></li>
         <li><a href="#blog">Блог</a></li>
         <li><a href="#manual">Інструкція</a></li>
         <li><a href="#contacts">Контакти</a></li>
       </ul>
     </nav>
+
+    <button class="sonata-header__burger burger-menu__button" aria-label="Відкрити меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
+
+<nav class="burger-nav">
+  <ul>
+    <li><a href="#hero" class="nav-link__burger">Головна</a></li>
+    <li><a href="#proposals" class="nav-link__burger">Придбати</a></li>
+    <li><a href="#download" class="nav-link__burger">Завантажити</a></li>
+    <li><a href="#free" class="nav-link__burger">Безкоштовно</a></li>
+    <li><a href="#blog" class="nav-link__burger">Блог</a></li>
+    <li><a href="#manual" class="nav-link__burger">Інструкція</a></li>
+    <li><a href="#contacts" class="nav-link__burger">Контакти</a></li>
+  </ul>
+</nav>
+
+<div class="backdrop"></div>

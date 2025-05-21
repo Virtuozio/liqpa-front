@@ -1,6 +1,5 @@
 .container.container__hero {
   width: 100%;
-  background-color: #ba89a2;
 }
 
 .nav-wrapper {
@@ -83,8 +82,6 @@
   padding: 0;
   width: 40px;
   height: 40px;
-
-  margin-bottom: 60px;
 
   &:hover {
     transform: scale(1.1);
@@ -271,7 +268,7 @@
   }
 }
 .sonata-hero {
-  padding: 40px 0;
+  padding: 80px 0 40px 0;
 
   &__container {
     display: flex;
@@ -298,7 +295,7 @@
     color: #222;
   }
   &__title-accent {
-    color: #4f3ff0;
+    color: #f2cc21;
     font-weight: 700;
     font-size: 2.5rem;
   }
@@ -414,7 +411,7 @@
       padding-left: 20px;
       &:before {
         content: "✔";
-        color: #4f3ff0;
+        color: #f2cc21;
         position: absolute;
         left: 0;
         top: 0;
@@ -445,7 +442,7 @@
     }
   }
   @media (max-width: 600px) {
-    padding: 20px 0;
+    padding: 80px 0 20px;
     &__container {
       padding: 0 8px;
     }

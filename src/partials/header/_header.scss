@@ -3,10 +3,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: #fff;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.03);
   font-family: "Avenir Next Cyr", Arial, sans-serif;
   z-index: 1000;
+  transition: all 0.3s ease;
 
   &__container {
     max-width: 1400px;
@@ -14,8 +16,7 @@
     display: flex;
     align-items: center;
     padding: 0 24px;
-    height: 48px;
-    min-height: 48px;
+    height: 72px;
     justify-content: space-between;
   }
 
@@ -23,22 +24,29 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: 10px;
+    gap: 12px;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 
   &__flag {
     display: flex;
     flex-direction: column;
     margin-right: 8px;
+
     .sonata-header__flag-blue {
-      width: 28px;
-      height: 8px;
+      width: 32px;
+      height: 10px;
       background: #0057b7;
       border-radius: 2px 2px 0 0;
     }
+
     .sonata-header__flag-yellow {
-      width: 28px;
-      height: 8px;
+      width: 32px;
+      height: 10px;
       background: #ffd700;
       border-radius: 0 0 2px 2px;
     }
@@ -55,77 +63,192 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    line-height: 1;
+    line-height: 1.1;
   }
+
   &__brand-main {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: #3570b7;
-    letter-spacing: 2px;
-    font-weight: 500;
+    letter-spacing: 1px;
+    font-weight: 600;
     font-family: inherit;
   }
+
   &__brand-sub {
     font-size: 0.85rem;
     color: #3570b7;
-    opacity: 0.7;
+    opacity: 0.8;
     margin-top: 2px;
     font-family: inherit;
   }
 
-  &__nav ul {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  &__nav a {
-    color: #232323;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    padding: 2px 6px;
-    transition: color 0.2s;
-    &.active,
-    &:hover {
-      color: #3570b7;
-      font-weight: 600;
+  &__nav {
+    @media (max-width: 1023px) {
+      display: none;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: #232323;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 8px 4px;
+      transition: all 0.2s;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #3570b7;
+        transition: width 0.2s ease;
+      }
+
+      &.active,
+      &:hover {
+        color: #3570b7;
+
+        &::after {
+          width: 100%;
+        }
+      }
     }
   }
 
-  // Responsive
-  @media (max-width: 900px) {
-    &__container {
+  &__burger {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 1001;
+
+    @media (max-width: 1023px) {
+      display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      height: auto;
-      padding: 8px 8px;
+      gap: 6px;
     }
-    &__nav ul {
-      gap: 12px;
-      flex-wrap: wrap;
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #232323;
+      transition: all 0.3s ease;
     }
-    &__logo-block {
-      margin-bottom: 6px;
+
+    &.active {
+      span {
+        &:first-child {
+          transform: translateY(8px) rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:last-child {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+      }
     }
   }
-  @media (max-width: 600px) {
+}
+
+// Mobile menu
+.burger-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 320px;
+  height: 100vh;
+  background: #fff;
+  padding: 88px 24px 24px;
+  transition: right 0.3s ease;
+  z-index: 999;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+
+  &.active {
+    right: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  a {
+    color: #232323;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #3570b7;
+    }
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Scroll behavior
+html.scrollBlock {
+  overflow: hidden;
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .sonata-header {
     &__container {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 4px 4px;
+      height: 64px;
+      padding: 0 16px;
     }
-    &__logo {
-      width: 28px;
-      height: 28px;
-    }
+
     &__brand-main {
-      font-size: 1rem;
+      font-size: 1.3rem;
     }
-    &__nav ul {
-      gap: 6px;
-      font-size: 0.95rem;
+
+    &__flag {
+      .sonata-header__flag-blue,
+      .sonata-header__flag-yellow {
+        width: 28px;
+        height: 8px;
+      }
     }
   }
 }
