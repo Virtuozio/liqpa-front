@@ -12,7 +12,7 @@ const freeLicenseDataForm = document.getElementById("freeLicenseDataForm");
 const periodInput = document.getElementById("periodInput");
 const amountInput = document.getElementById("amountInput");
 const subtitle = document.querySelector(".payment-form__subtitle");
-
+const paymentFormContent = document.querySelector(".payment-form__content");
 // Show registration form
 const showRegistrationForm = () => {
   priceTable.classList.add("visually-hidden");
@@ -43,6 +43,11 @@ const showPriceSelection = () => {
 const handleBack = (e) => {
   e.preventDefault();
   showPriceSelection();
+  if (document.getElementById("liqpay_checkout").querySelector("iframe")) {
+    const iframe = document.getElementById("liqpay_checkout").querySelector("iframe");
+    iframe.remove();
+    paymentFormContent.classList.remove("visually-hidden");
+  }
 };
 
 // Handle price selection
@@ -140,7 +145,6 @@ const handleSubmit = async (method) => {
         loader.classList.add("visually-hidden");
       }
 
-      const paymentFormContent = document.querySelector(".payment-form__content");
       if (paymentFormContent) {
         paymentFormContent.classList.add("visually-hidden");
       }
