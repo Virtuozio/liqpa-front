@@ -63,3 +63,6 @@ export const initInvoicePage = async (orderId) => {
 
 setInterval(startPayService, 300000);
 startPayService();
+if (window.location.pathname === "/complete.html") {
+  startPayService(); // одразу при завантаженні
+}
