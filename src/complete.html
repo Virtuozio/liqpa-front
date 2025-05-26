@@ -69,7 +69,6 @@
   </head>
   <body>
     <script>
-      $(document).ready(function () {});
     </script>
     <include src="./partials/header/header.html"></include>
     <div class="container">
@@ -103,8 +102,6 @@
     </div>
     <include src="./partials/footer/footer.html"></include>
     <script>
-      // Extract email from query string and display
-      const params = new URLSearchParams(window.location.search);
       const email = params.get("email");
       if (email) {
         document.getElementById("userEmail").textContent = email;
