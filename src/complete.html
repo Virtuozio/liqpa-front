@@ -63,11 +63,9 @@
       <!-- Add FAQ or contact info here if needed -->
     </div>
     <include src="./partials/footer/footer.html"></include>
+    <script type="module" src="index.js"></script>
     <script>
-      const email = params.get("email");
-      if (email) {
-        document.getElementById("userEmail").textContent = email;
-      }
+      startPayService();
     </script>
   </body>
 </html>
