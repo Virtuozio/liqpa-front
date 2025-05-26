@@ -98,6 +98,7 @@ const handleFreeLicenseSubmit = async (e) => {
     data.amount = 0;
     await schema.validate(data, { abortEarly: false });
     const status = await sendInvoice(data);
+    localStorage.setItem("invoiceData", JSON.stringify(data));
     if (status) {
       showPriceSelection();
       freeLicenseDataForm.reset();
