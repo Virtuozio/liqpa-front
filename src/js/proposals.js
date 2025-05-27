@@ -1,4 +1,4 @@
-import { getPayData, initInvoicePage, sendInvoice, createInvoice } from "../api/pay";
+import { getPayData, sendInvoice, createInvoice } from "../api/pay";
 import { schema } from "./validationYup";
 // Elements
 const paymentForm = document.querySelector(".payment-form");
@@ -154,8 +154,8 @@ const handleSubmit = async (method) => {
       const status = await createInvoice(data);
       localStorage.setItem("invoiceData", JSON.stringify(data));
       if (status) {
-        window.location.href = "/invoice.html";
-        await initInvoicePage(status.order_id);
+        window.location.href = `/invoice.html?order_id=${status.order_id}`;
+
         legalForm.reset();
       } else {
         alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
