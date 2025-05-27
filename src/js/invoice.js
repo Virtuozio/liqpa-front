@@ -36,17 +36,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
       <div class="invoice-warning">${payment.organisation?.tax_comment || ""}</div>
       <h1 class="invoice-title">
-        Рахунок на оплату № ${payment.invoiceNumber || ""} від ${
+        Рахунок на оплату № ${payment.order_id || ""} від ${
       payment.date ? new Date(payment.date).toLocaleDateString("uk-UA") : ""
     } р.
       </h1>
-      <div class="invoice-qr-instructions">
-        <div class="qr-block">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${
-            payment.organisation?.iban || ""
-          }" alt="QR для оплати" />
-        </div>
-      </div>
+      
       <div class="invoice-supplier-buyer">
         <div class="supplier">
           <b>ПОСТАЧАЛЬНИК:</b><br />
@@ -110,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="invoice-license-warning">
           Ліцензія вступає в дію після надходження коштів на рахунок або, за наявності чинної ліцензії, з моменту її закінчення.<br />
           Обов'язково вкажіть номер рахунку "${
-            payment.invoiceNumber || ""
+            payment.order_id || ""
           }" або свій ІПН/ЄДРПОУ у призначенні платежу.
         </div>
         <div class="invoice-sign">
