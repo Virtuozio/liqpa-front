@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Use your API method
     const res = await initInvoicePage(orderId);
     // Axios puts the data in res.data
-    const payment = res.data;
+    const payment = res.data.payment;
 
     // Render invoice HTML (reuse your previous template, but fill with payment data)
     container.innerHTML = `
