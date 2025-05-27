@@ -122,13 +122,6 @@
           payment.invoiceNumber || ""
         } від ${date} р.`;
 
-        // QR code
-        if (payment.organisation?.iban) {
-          document.getElementById(
-            "qrImg"
-          ).src = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${payment.organisation.iban}`;
-        }
-
         // Supplier
         document.getElementById("supplier").innerHTML = `
           <b>ПОСТАЧАЛЬНИК:</b><br />
