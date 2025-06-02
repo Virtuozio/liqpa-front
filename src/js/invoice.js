@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Render invoice HTML (reuse your previous template, but fill with payment data)
     container.innerHTML = `
       <div class="invoice-actions">
-        <button onclick="window.print()">Роздрукувати</button>
+        <button onclick="document.getElementById('invoiceContainer').print()">Роздрукувати</button>
         ${
           payment.liqpayUrl
             ? `<a href="${payment.liqpayUrl}" class="pay-btn" target="_blank">Сплатити карткою</a>`
             : ""
         }
-        <button onclick="window.print()">Зберегти в PDF</button>
+        <button onclick="saveAsPDF()">Зберегти в PDF</button>
         <button onclick="window.location.href='/'">Ще один рахунок</button>
       </div>
       <div class="invoice-warning">${payment.organisation?.tax_comment || ""}</div>
