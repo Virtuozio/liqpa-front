@@ -27,6 +27,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
     />
     <link rel="stylesheet" href="./style.scss" />
+    <style type="text/css" media="print">
+      .no-print {
+        display: none;
+      }
+    </style>
     <!-- Meta Pixel Code -->
     <script>
       !(function (f, b, e, v, n, t, s) {
@@ -62,7 +67,7 @@
     <main>
       <include src="./partials/header/header.html"></include>
       <div class="invoice-wrapper">
-        <div class="invoice-actions">
+        <div class="invoice-actions no-print">
           <button onclick="document.getElementById('invoiceContainer').print()">
             Роздрукувати
           </button>
@@ -114,7 +119,9 @@
           console.error("Invoice container not found");
           return;
         }
-        html2pdf(invoiceContainer);
+        const params = new URLSearchParams(window.location.search);
+        const invoiceTitle = params.get("invoiceTitle");
+        html2pdf(invoiceContainer).from(invoiceContainer).save(`invoice-${invoiceTitle}.pdf`);
       }
     </script>
   </body>
