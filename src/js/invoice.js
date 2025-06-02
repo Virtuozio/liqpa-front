@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Render invoice HTML (reuse your previous template, but fill with payment data)
     container.innerHTML = `
       <div class="invoice-actions">
-        <button onclick="document.getElementById('invoiceContainer').print()">Роздрукувати</button>
+        <button onclick="document.querySelector('.invoice-container').print()">Роздрукувати</button>
         ${
           payment.liqpayUrl
             ? `<a href="${payment.liqpayUrl}" class="pay-btn" target="_blank">Сплатити карткою</a>`
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <button onclick="window.location.href='/'">Ще один рахунок</button>
       </div>
       <div class="invoice-warning">${payment.organisation?.tax_comment || ""}</div>
+      <div class="invoice-container">
       <h1 class="invoice-title">
         Рахунок на оплату № ${payment.order_id || ""} від ${
       payment.date ? new Date(payment.date).toLocaleDateString("uk-UA") : ""
@@ -110,6 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="invoice-sign">
           Виписав: <span class="sign-line">${payment.organisation?.signer_short || ""}</span>
         </div>
+      </div>
       </div>
     `;
   } catch (err) {
