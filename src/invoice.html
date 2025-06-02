@@ -63,7 +63,9 @@
       <include src="./partials/header/header.html"></include>
       <div class="invoice-container">
         <div class="invoice-actions">
-          <button onclick="window.print()">Роздрукувати</button>
+          <button onclick="document.getElementById('invoiceContainer').print()">
+            Роздрукувати
+          </button>
           <a href="#" class="pay-btn" id="payBtn" target="_blank" style="display: none"
             >Сплатити карткою</a
           >
@@ -99,5 +101,21 @@
     </main>
     <script type="module" src="index.js"></script>
     <script type="module" src="./js/invoice.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      function saveAsPDF() {
+        const invoiceContainer = document.querySelector(".invoice-container");
+        if (!invoiceContainer) {
+          console.error("Invoice container not found");
+          return;
+        }
+        html2pdf(invoiceContainer);
+      }
+    </script>
   </body>
 </html>

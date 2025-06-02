@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             : ""
         }
         <button onclick="window.print()">Зберегти в PDF</button>
-        <button onclick="window.location.href='/invoice/new'">Ще один рахунок</button>
+        <button onclick="window.location.href='/'">Ще один рахунок</button>
       </div>
       <div class="invoice-warning">${payment.organisation?.tax_comment || ""}</div>
       <h1 class="invoice-title">
