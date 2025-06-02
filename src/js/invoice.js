@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Render invoice HTML (reuse your previous template, but fill with payment data)
     container.innerHTML = `
       <div class="invoice-actions">
-        <button onclick="document.querySelector('.invoice-container').print()">Роздрукувати</button>
+        <button onclick="window.print()">Роздрукувати</button>
         ${
           payment.liqpayUrl
             ? `<a href="${payment.liqpayUrl}" class="pay-btn" target="_blank">Сплатити карткою</a>`
