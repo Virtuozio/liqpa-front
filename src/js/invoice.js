@@ -2,7 +2,7 @@
 import { initInvoicePage } from "../api/pay";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const container = document.querySelector(".invoice-container");
+  const container = document.querySelector(".invoice-wrapper");
   if (!container) return;
 
   // Get order_id from URL
