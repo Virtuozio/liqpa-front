@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Render invoice HTML (reuse your previous template, but fill with payment data)
     container.innerHTML = `
-      <div class="invoice-actions">
+      <div class="invoice-actions no-print">
         <button onclick="window.print()">Роздрукувати</button>
         ${
           payment.liqpayUrl
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         Послуга включає ліцензійну версію програми СОНАТА
       </div>
       <div class="invoice-footer">
-        <div class="invoice-license-warning">
+        <div class="invoice-license-warning no-print">
           Ліцензія вступає в дію після надходження коштів на рахунок або, за наявності чинної ліцензії, з моменту її закінчення.<br />
           Обов'язково вкажіть номер рахунку "${
             payment.order_id || ""
