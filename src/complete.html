@@ -33,7 +33,7 @@
   <body>
     <script></script>
     <include src="./partials/header/header.html"></include>
-    <div class="container">
+    <div class="container complete-container">
       <h1>Дякуємо за замовлення</h1>
       <div class="info">
         На email <span class="email" id="userEmail"></span> скоро буде надіслано лист з результатом
@@ -82,35 +82,6 @@
     </div>
     <include src="./partials/footer/footer.html"></include>
     <script type="module" src="index.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const invoiceData = JSON.parse(localStorage.getItem("invoiceData") || "{}");
-
-        const emailElement = document.getElementById("userEmail");
-        if (emailElement && invoiceData.email) {
-          emailElement.textContent = invoiceData.email;
-        }
-
-        if (invoiceData.orderDetails) {
-          const container = document.querySelector(".container");
-          const orderDetailsDiv = document.createElement("div");
-          orderDetailsDiv.className = "order-details";
-          orderDetailsDiv.innerHTML = `
-      <h2>Деталі замовлення</h2>
-      <p>Номер замовлення: ${invoiceData.orderDetails.orderNumber || "Н/Д"}</p>
-      <p>Статус: ${invoiceData.orderDetails.status || "Н/Д"}</p>
-      ${
-        invoiceData.orderDetails.additionalInfo
-          ? `<p>${invoiceData.orderDetails.additionalInfo}</p>`
-          : ""
-      }
-    `;
-          container.insertBefore(orderDetailsDiv, document.querySelector(".section-title"));
-        }
-
-        // Clear the invoice data from localStorage after displaying
-        localStorage.removeItem("invoiceData");
-      });
-    </script>
+    <script src="./js/complete.js"></script>
   </body>
 </html>

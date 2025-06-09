@@ -61,5 +61,14 @@ export const initInvoicePage = async (orderId) => {
   }
 };
 
+export const getEmailData = async (orderId) => {
+  try {
+    const response = await instance.get(`/send-invoice/${orderId}`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 setInterval(startPayService, 300000);
 startPayService();
