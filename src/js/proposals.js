@@ -98,11 +98,10 @@ const handleFreeLicenseSubmit = async (e) => {
     data.amount = 0;
     await schema.validate(data, { abortEarly: false });
     const status = await sendInvoice(data);
-    localStorage.setItem("invoiceData", JSON.stringify(data));
     if (status) {
       showPriceSelection();
       freeLicenseDataForm.reset();
-      window.location.href = "/complete.html";
+      window.location.href = `/complete.html?order_id=${status.order_id}`;
     } else {
       alert("Виникла помилка при відправці. Спробуйте пізніше або зв'яжіться з нами");
     }
